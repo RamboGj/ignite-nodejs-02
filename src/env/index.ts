@@ -11,7 +11,8 @@ if (process.env.NODE_ENV === 'test') {
 
 const envSchema = z.object({
   DATABASE_URL: z.string(),
-  PORT: z.number().default(3333),
+  DATABASE_CLIENT: z.enum(['sqlite', 'pg']),
+  PORT: z.coerce.number().default(3333), // Independents on field value received, coerse transforms this in a number after receiving
   NODE_ENV: z.enum(['development', 'test', 'production']).default('production'),
 })
 
@@ -24,4 +25,3 @@ if (_env.success === false) {
 }
 
 export const env = _env.data
-console.log('env i ntest', env)

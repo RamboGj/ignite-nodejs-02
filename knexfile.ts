@@ -1,3 +1,3 @@
-const config = require('./src/database')
+import { config } from './src/database'
 
 export default config
